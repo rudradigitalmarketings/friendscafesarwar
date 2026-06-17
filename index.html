@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Cache Control -->
+    <!-- Cache Control (हर बार वेबसाइट फ्रेश लोड होगी) -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -54,7 +54,7 @@
 
         /* Section Titles */
         .section-title {
-            text-align: center; font-size: 1.8rem; margin: 40px auto 20px;
+            text-align: center; font-size: 1.6rem; margin: 40px auto 20px;
             color: var(--secondary-color); text-transform: uppercase;
             background: rgba(0,0,0,0.8); display: inline-block; padding: 8px 25px;
             border-radius: 50px; border: 1px solid var(--primary-color);
@@ -62,9 +62,9 @@
             position: relative; left: 50%; transform: translateX(-50%);
         }
 
-        /* Menu Grid - Compact Size */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
+        /* Menu Grid - Compact Size (2 items in mobile) */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
 
         /* Item Cards - Smaller Size */
         .card {
@@ -74,17 +74,19 @@
             display: flex; flex-direction: column; justify-content: space-between;
         }
         .card:hover { transform: translateY(-5px); border-color: var(--secondary-color); }
-        .card-img { width: 100%; height: 150px; object-fit: cover; border-bottom: 2px solid var(--primary-color); }
-        .combo-img { height: 180px; object-fit: contain; background: #000; padding: 5px; }
         
-        .card-content { padding: 12px; text-align: center; display: flex; flex-direction: column; flex-grow: 1; justify-content: flex-end; }
-        .item-name { font-size: 1.1rem; margin-bottom: 5px; color: white; font-weight: 700; line-height: 1.3; }
-        .offer-price { color: #00ff00; font-weight: bold; font-size: 1.2rem; display: block; margin-bottom: 10px; }
+        /* Dark background for loading phase */
+        .card-img { width: 100%; height: 130px; object-fit: cover; border-bottom: 2px solid var(--primary-color); background: #222; }
+        .combo-img { height: 160px; object-fit: contain; background: #000; padding: 5px; }
+        
+        .card-content { padding: 10px; text-align: center; display: flex; flex-direction: column; flex-grow: 1; justify-content: flex-end; }
+        .item-name { font-size: 1rem; margin-bottom: 5px; color: white; font-weight: 700; line-height: 1.2; }
+        .offer-price { color: #00ff00; font-weight: bold; font-size: 1.1rem; display: block; margin-bottom: 8px; }
         
         /* Order Button - Compact */
         .order-btn {
             background: linear-gradient(45deg, #25D366, #128C7E); color: white; border: none;
-            padding: 8px; width: 100%; border-radius: 30px; font-size: 0.95rem; font-weight: bold;
+            padding: 7px; width: 100%; border-radius: 30px; font-size: 0.9rem; font-weight: bold;
             cursor: pointer; transition: 0.3s; box-shadow: 0 3px 8px rgba(37, 211, 102, 0.4);
         }
         .order-btn:hover { transform: scale(1.05); }
@@ -107,11 +109,7 @@
 
         @media (max-width: 768px) {
             nav { display: none; }
-            .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } /* Mobile me 2 items per row */
-            .card-img { height: 120px; }
-            .item-name { font-size: 0.95rem; }
-            .offer-price { font-size: 1rem; }
-            .order-btn { font-size: 0.85rem; padding: 6px; }
+            .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } /* Mobile me 2 items perfectly */
         }
     </style>
 </head>
@@ -143,7 +141,7 @@
         <h2 class="section-title">🔥 नए आइटम 🔥</h2>
         <div class="grid">
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc0?auto=format&fit=crop&w=400&q=70" alt="मटर पनीर" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Delicious_Indian_Matar_Paneer_Curry_Food_Photography?width=400&height=250&nologo=true" alt="मटर पनीर" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">मटर पनीर</h3>
                     <span class="offer-price">Best Price</span>
@@ -151,7 +149,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1589301760014-d929f39ce9b1?auto=format&fit=crop&w=400&q=70" alt="कड़ाई पनीर" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Indian_Kadai_Paneer_Spicy_Curry_Restaurant_Food?width=400&height=250&nologo=true" alt="कड़ाई पनीर" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">कड़ाई पनीर</h3>
                     <span class="offer-price">Best Price</span>
@@ -159,7 +157,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=400&q=70" alt="छोले कुल्चे" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Indian_Chole_Kulche_Street_Food_Photography?width=400&height=250&nologo=true" alt="छोले कुल्चे" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">छोले कुल्चे</h3>
                     <span class="offer-price">₹60</span>
@@ -167,7 +165,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=400&q=70" alt="चाइनीज भेल" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Chinese_Bhel_Crispy_Noodles_Indian_Street_Food?width=400&height=250&nologo=true" alt="चाइनीज भेल" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">चाइनीज भेल</h3>
                     <span class="offer-price">₹40</span>
@@ -175,7 +173,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?auto=format&fit=crop&w=400&q=70" alt="स्प्रिंग रोल" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Crispy_Fried_Spring_Rolls_Food_Photography?width=400&height=250&nologo=true" alt="स्प्रिंग रोल" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">स्प्रिंग रोल</h3>
                     <span class="offer-price">₹50</span>
@@ -193,7 +191,7 @@
                 <img src="special combo 1.png" alt="Combo 1" class="card-img combo-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">कॉम्बो पैक 1</h3>
-                    <span class="offer-price">₹190 <del style="color:#aaa; font-size:0.9rem;">(₹210)</del></span>
+                    <span class="offer-price">₹190 <del style="color:#aaa; font-size:0.85rem;">(₹210)</del></span>
                     <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 1', 190)">🛒 ऑर्डर करें</button>
                 </div>
             </div>
@@ -201,7 +199,7 @@
                 <img src="special combo 2.png" alt="Combo 2" class="card-img combo-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">कॉम्बो पैक 2</h3>
-                    <span class="offer-price">₹199 <del style="color:#aaa; font-size:0.9rem;">(₹230)</del></span>
+                    <span class="offer-price">₹199 <del style="color:#aaa; font-size:0.85rem;">(₹230)</del></span>
                     <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 2', 199)">🛒 ऑर्डर करें</button>
                 </div>
             </div>
@@ -209,7 +207,7 @@
                 <img src="special combo 3.png" alt="Combo 3" class="card-img combo-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">कॉम्बो पैक 3</h3>
-                    <span class="offer-price">₹299 <del style="color:#aaa; font-size:0.9rem;">(₹330)</del></span>
+                    <span class="offer-price">₹299 <del style="color:#aaa; font-size:0.85rem;">(₹330)</del></span>
                     <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 3', 299)">🛒 ऑर्डर करें</button>
                 </div>
             </div>
@@ -221,7 +219,7 @@
         <h2 class="section-title">🍔 फ़ास्ट फ़ूड & स्नैक्स 🍟</h2>
         <div class="grid">
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=400&q=70" alt="पनीर टिक्का" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Paneer_Tikka_Skewers_Indian_Starter_Food?width=400&height=250&nologo=true" alt="पनीर टिक्का" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">पनीर टिक्का</h3>
                     <span class="offer-price">₹99</span>
@@ -229,7 +227,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400&q=70" alt="अफगानी पनीर टिक्का" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Afghani_Paneer_Tikka_White_Creamy_Skewers_Indian?width=400&height=250&nologo=true" alt="अफगानी पनीर टिक्का" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">अफगानी पनीर टिक्का</h3>
                     <span class="offer-price">₹140</span>
@@ -237,7 +235,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&w=400&q=70" alt="मोमोज स्टीम" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Steamed_Momos_Dumplings_With_Red_Chutney?width=400&height=250&nologo=true" alt="मोमोज स्टीम" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">मोमोज (स्टीम)</h3>
                     <span class="offer-price">₹50</span>
@@ -245,7 +243,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=400&q=70" alt="मोमोज फ्राई" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Fried_Momos_Dumplings_Crispy_Golden?width=400&height=250&nologo=true" alt="मोमोज फ्राई" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">मोमोज (फ्राई)</h3>
                     <span class="offer-price">₹60</span>
@@ -253,7 +251,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=400&q=70" alt="पनीर मोमोज" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Paneer_Momos_Dumplings_Indian_Street_Food?width=400&height=250&nologo=true" alt="पनीर मोमोज" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">पनीर मोमोज</h3>
                     <span class="offer-price">₹70</span>
@@ -261,7 +259,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=400&q=70" alt="चीज चिली गार्लिक ग्रील" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Cheese_Chilli_Garlic_Grilled_Sandwich_Food?width=400&height=250&nologo=true" alt="चीज चिली गार्लिक ग्रील" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">चीज चिली गार्लिक ग्रील</h3>
                     <span class="offer-price">₹80</span>
@@ -269,7 +267,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=70" alt="वड़ा पाव" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Indian_Vada_Pav_Street_Food_Photography?width=400&height=250&nologo=true" alt="वड़ा पाव" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">वड़ा पाव</h3>
                     <span class="offer-price">₹40</span>
@@ -277,7 +275,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1626804475297-4160bdfafdd8?auto=format&fit=crop&w=400&q=70" alt="चाइनीज पैटीज़" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Indian_Chinese_Patties_Puff_Pastry_Snack?width=400&height=250&nologo=true" alt="चाइनीज पैटीज़" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">चाइनीज पैटीज़</h3>
                     <span class="offer-price">₹40</span>
@@ -285,7 +283,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1605807646983-377bc5a76493?auto=format&fit=crop&w=400&q=70" alt="बॉम्बे भेल" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Bombay_Bhel_Puri_Indian_Street_Food_Chaat?width=400&height=250&nologo=true" alt="बॉम्बे भेल" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">बॉम्बे भेल</h3>
                     <span class="offer-price">₹60</span>
@@ -293,7 +291,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?auto=format&fit=crop&w=400&q=70" alt="पनीर 65" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Paneer_65_Spicy_Fried_Red_Indian_Starter?width=400&height=250&nologo=true" alt="पनीर 65" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">पनीर 65</h3>
                     <span class="offer-price">₹120</span>
@@ -301,7 +299,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=400&q=70" alt="पिंक सॉस पास्ता" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Pink_Sauce_Pasta_Penne_Creamy_Tomato_Food?width=400&height=250&nologo=true" alt="पिंक सॉस पास्ता" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">पिंक सॉस पास्ता</h3>
                     <span class="offer-price">₹100</span>
@@ -309,7 +307,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=400&q=70" alt="कॉम्बिनेशन पिंक पास्ता" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Mix_Sauce_Pasta_Indian_Style_Creamy?width=400&height=250&nologo=true" alt="कॉम्बिनेशन पिंक पास्ता" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">कॉम्बिनेशन पिंक पास्ता</h3>
                     <span class="offer-price">₹100</span>
@@ -317,7 +315,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1588144671404-58eb11f7c320?auto=format&fit=crop&w=400&q=70" alt="चीज वेज कटलेट" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Crispy_Cheese_Veg_Cutlet_Indian_Snack_Food?width=400&height=250&nologo=true" alt="चीज वेज कटलेट" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">चीज वेज कटलेट</h3>
                     <span class="offer-price">₹50</span>
@@ -332,7 +330,7 @@
         <h2 class="section-title">🍕 प्रीमियम पिज़्ज़ा 🍕</h2>
         <div class="grid">
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=70" alt="Jiggle Pizza" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Delicious_Jiggle_Pizza_With_Cheese?width=400&height=250&nologo=true" alt="Jiggle Pizza" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">Jiggle पिज़्ज़ा</h3>
                     <span class="offer-price">8" ₹150 | 10" ₹200</span>
@@ -340,7 +338,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=400&q=70" alt="Margherita Pizza" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Classic_Margherita_Pizza_With_Basil_Leaves?width=400&height=250&nologo=true" alt="Margherita Pizza" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">मार्गरीटा पिज़्ज़ा</h3>
                     <span class="offer-price">8" ₹120 | 10" ₹150</span>
@@ -348,7 +346,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=70" alt="Supreme Lovers Pizza" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Supreme_Lovers_Veggie_Pizza_Loaded?width=400&height=250&nologo=true" alt="Supreme Lovers Pizza" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">सुप्रीम लवर्स पिज़्ज़ा</h3>
                     <span class="offer-price">8" ₹160 | 10" ₹210</span>
@@ -356,7 +354,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=400&q=70" alt="Punjabi Pizza" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Punjabi_Spicy_Paneer_Pizza_Indian_Style?width=400&height=250&nologo=true" alt="Punjabi Pizza" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">पंजाबी पिज़्ज़ा</h3>
                     <span class="offer-price">8" ₹180 | 10" ₹240</span>
@@ -364,7 +362,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=400&q=70" alt="Tandoori Paneer Pizza" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Tandoori_Paneer_Pizza_Indian_Fusion_Food?width=400&height=250&nologo=true" alt="Tandoori Paneer Pizza" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">तंदूरी पनीर पिज़्ज़ा</h3>
                     <span class="offer-price">8" ₹130 | 10" ₹170</span>
@@ -372,7 +370,7 @@
                 </div>
             </div>
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1548369937-47519962c11a?auto=format&fit=crop&w=400&q=70" alt="Triple Cheese Pizza" class="card-img" loading="lazy">
+                <img src="https://image.pollinations.ai/prompt/Triple_Cheese_Pizza_Loaded_Melted?width=400&height=250&nologo=true" alt="Triple Cheese Pizza" class="card-img" loading="lazy">
                 <div class="card-content">
                     <h3 class="item-name">ट्रिपल चीज पिज़्ज़ा</h3>
                     <span class="offer-price">8" ₹140 | 10" ₹200</span>
