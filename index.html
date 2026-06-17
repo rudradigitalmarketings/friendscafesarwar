@@ -59,11 +59,7 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 10px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
 
-        /* Original Menu Images Styling */
-        .menu-image-box { text-align: center; margin-bottom: 20px; }
-        .menu-image-box img { max-width: 100%; border-radius: 12px; border: 2px solid var(--secondary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.8); }
-
-        /* Icon Cards */
+        /* Icon Cards Styling */
         .card {
             background: var(--card-bg); border-radius: 10px; overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.8); transition: transform 0.3s;
@@ -91,6 +87,10 @@
             cursor: pointer; transition: 0.3s; box-shadow: 0 3px 8px rgba(37, 211, 102, 0.3); text-transform: uppercase;
         }
         .order-btn:hover { background: linear-gradient(45deg, #128C7E, #25D366); transform: scale(1.02); }
+
+        /* Original Menu Images Styling (Moved to Bottom) */
+        .menu-image-box { text-align: center; margin-bottom: 20px; }
+        .menu-image-box img { max-width: 100%; border-radius: 12px; border: 2px solid var(--secondary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.8); }
 
         /* Floating Buttons */
         .floating-buttons { position: fixed; bottom: 20px; right: 15px; display: flex; flex-direction: column; gap: 12px; z-index: 9999; }
@@ -123,10 +123,10 @@
             <h1>Friends Cafe</h1>
         </div>
         <nav>
-            <a href="#menu-cards">ओरिजिनल मेनू</a>
+            <a href="#new-items">नए आइटम</a>
             <a href="#combos">कॉम्बो पैक</a>
-            <a href="#menu-fastfood">फ़ास्ट फ़ूड</a>
-            <a href="#menu-pizza">पिज़्ज़ा</a>
+            <a href="#menu-fastfood">फ़ास्ट फ़ूड</a>
+            <a href="#menu-pizza">पिज़्ज़ा</a>
         </nav>
     </header>
 
@@ -137,14 +137,15 @@
         <p>स्वाद भी, शुद्ध भी - सरवाड़ का अपना कैफे!</p>
     </section>
 
-    <!-- 1. 📜 ORIGINAL MENU CARDS SECTION 📜 -->
-    <section id="menu-cards" class="container">
-        <h2 class="section-title">📜 हमारा ओरिजिनल मेनू 📜</h2>
-        <div class="menu-image-box">
-            <img src="new item list.jpg" alt="New Items List" loading="lazy">
-        </div>
-        <div class="menu-image-box">
-            <img src="new menu card.jpeg" alt="Menu Card" loading="lazy">
+    <!-- 1. 🔥 NEW ITEMS SECTION (ICONS ONLY) 🔥 -->
+    <section id="new-items" class="container">
+        <h2 class="section-title">🔥 नए आइटम 🔥</h2>
+        <div class="grid">
+            <div class="card"><div class="card-icon">🥘</div><div class="card-content"><h3 class="item-name">मटर पनीर</h3><span class="offer-price">Best Price</span><button class="order-btn" onclick="orderItem('मटर पनीर', 'Best Price')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥘</div><div class="card-content"><h3 class="item-name">कड़ाई पनीर</h3><span class="offer-price">Best Price</span><button class="order-btn" onclick="orderItem('कड़ाई पनीर', 'Best Price')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍛</div><div class="card-content"><h3 class="item-name">छोले कुल्चे</h3><span class="offer-price">₹60</span><button class="order-btn" onclick="orderItem('छोले कुल्चे', 60)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥗</div><div class="card-content"><h3 class="item-name">चाइनीज भेल</h3><span class="offer-price">₹40</span><button class="order-btn" onclick="orderItem('चाइनीज भेल', 40)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🌯</div><div class="card-content"><h3 class="item-name">स्प्रिंग रोल</h3><span class="offer-price">₹50</span><button class="order-btn" onclick="orderItem('स्प्रिंग रोल', 50)">🛒 ऑर्डर करें</button></div></div>
         </div>
     </section>
 
@@ -159,7 +160,7 @@
                     <div class="combo-desc">
                         🔸 पनीर टिक्का<br>
                         🔸 कोल्ड कॉफी<br>
-                        🔸 चाइनीज़ भेल
+                        🔸 चाइनीज़ भेल
                     </div>
                     <span class="offer-price">₹190 <del style="color:#aaa; font-size:0.85rem;">(₹210)</del></span>
                     <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 1', 190)">🛒 ऑर्डर करें</button>
@@ -183,7 +184,7 @@
                 <div class="card-content">
                     <h3 class="item-name">कॉम्बो पैक 3</h3>
                     <div class="combo-desc">
-                        🔸 पंजाबी पिज़्ज़ा 8"<br>
+                        🔸 पंजाबी पिज़्ज़ा 8"<br>
                         🔸 कोल्ड कॉफी<br>
                         🔸 मसाला सैंडविच
                     </div>
@@ -196,14 +197,8 @@
 
     <!-- 3. 🍔 FAST FOOD MENU (ICONS ONLY) 🍔 -->
     <section id="menu-fastfood" class="container">
-        <h2 class="section-title">🍔 फ़ास्ट फ़ूड & स्नैक्स 🍟</h2>
+        <h2 class="section-title">🍔 फ़ास्ट फ़ूड & स्नैक्स 🍟</h2>
         <div class="grid">
-            <div class="card"><div class="card-icon">🥘</div><div class="card-content"><h3 class="item-name">मटर पनीर</h3><span class="offer-price">Best Price</span><button class="order-btn" onclick="orderItem('मटर पनीर', 'Best Price')">🛒 ऑर्डर करें</button></div></div>
-            <div class="card"><div class="card-icon">🥘</div><div class="card-content"><h3 class="item-name">कड़ाई पनीर</h3><span class="offer-price">Best Price</span><button class="order-btn" onclick="orderItem('कड़ाई पनीर', 'Best Price')">🛒 ऑर्डर करें</button></div></div>
-            <div class="card"><div class="card-content"><h3 class="item-name">छोले कुल्चे</h3><span class="offer-price">₹60</span><button class="order-btn" onclick="orderItem('छोले कुल्चे', 60)">🛒 ऑर्डर करें</button></div></div>
-            <div class="card"><div class="card-icon">🥗</div><div class="card-content"><h3 class="item-name">चाइनीज भेल</h3><span class="offer-price">₹40</span><button class="order-btn" onclick="orderItem('चाइनीज भेल', 40)">🛒 ऑर्डर करें</button></div></div>
-            <div class="card"><div class="card-icon">🌯</div><div class="card-content"><h3 class="item-name">स्प्रिंग रोल</h3><span class="offer-price">₹50</span><button class="order-btn" onclick="orderItem('स्प्रिंग रोल', 50)">🛒 ऑर्डर करें</button></div></div>
-            
             <div class="card"><div class="card-icon">🍢</div><div class="card-content"><h3 class="item-name">पनीर टिक्का</h3><span class="offer-price">₹99</span><button class="order-btn" onclick="orderItem('पनीर टिक्का', 99)">🛒 ऑर्डर करें</button></div></div>
             <div class="card"><div class="card-icon">🍢</div><div class="card-content"><h3 class="item-name">अफगानी पनीर टिक्का</h3><span class="offer-price">₹140</span><button class="order-btn" onclick="orderItem('अफगानी पनीर टिक्का', 140)">🛒 ऑर्डर करें</button></div></div>
             <div class="card"><div class="card-icon">🥟</div><div class="card-content"><h3 class="item-name">मोमोज (स्टीम)</h3><span class="offer-price">₹50</span><button class="order-btn" onclick="orderItem('मोमोज (स्टीम)', 50)">🛒 ऑर्डर करें</button></div></div>
@@ -211,7 +206,7 @@
             <div class="card"><div class="card-icon">🥟</div><div class="card-content"><h3 class="item-name">पनीर मोमोज</h3><span class="offer-price">₹70</span><button class="order-btn" onclick="orderItem('पनीर मोमोज', 70)">🛒 ऑर्डर करें</button></div></div>
             <div class="card"><div class="card-icon">🥪</div><div class="card-content"><h3 class="item-name">चीज चिली गार्लिक ग्रील</h3><span class="offer-price">₹80</span><button class="order-btn" onclick="orderItem('चीज चिली गार्लिक ग्रील', 80)">🛒 ऑर्डर करें</button></div></div>
             <div class="card"><div class="card-icon">🍔</div><div class="card-content"><h3 class="item-name">वड़ा पाव</h3><span class="offer-price">₹40</span><button class="order-btn" onclick="orderItem('वड़ा पाव', 40)">🛒 ऑर्डर करें</button></div></div>
-            <div class="card"><div class="card-icon">🥟</div><div class="card-content"><h3 class="item-name">चाइनीज पैटीज़</h3><span class="offer-price">₹40</span><button class="order-btn" onclick="orderItem('चाइनीज पैटीज़', 40)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥟</div><div class="card-content"><h3 class="item-name">चाइनीज पैटीज़</h3><span class="offer-price">₹40</span><button class="order-btn" onclick="orderItem('चाइनीज पैटीज़', 40)">🛒 ऑर्डर करें</button></div></div>
             <div class="card"><div class="card-icon">🥗</div><div class="card-content"><h3 class="item-name">बॉम्बे भेल</h3><span class="offer-price">₹60</span><button class="order-btn" onclick="orderItem('बॉम्बे भेल', 60)">🛒 ऑर्डर करें</button></div></div>
             <div class="card"><div class="card-icon">🥘</div><div class="card-content"><h3 class="item-name">पनीर 65</h3><span class="offer-price">₹120</span><button class="order-btn" onclick="orderItem('पनीर 65', 120)">🛒 ऑर्डर करें</button></div></div>
             <div class="card"><div class="card-icon">🍝</div><div class="card-content"><h3 class="item-name">पिंक सॉस पास्ता</h3><span class="offer-price">₹100</span><button class="order-btn" onclick="orderItem('पिंक सॉस पास्ता', 100)">🛒 ऑर्डर करें</button></div></div>
@@ -222,14 +217,25 @@
 
     <!-- 4. 🍕 PREMIUM PIZZA MENU (ICONS ONLY) 🍕 -->
     <section id="menu-pizza" class="container">
-        <h2 class="section-title">🍕 प्रीमियम पिज़्ज़ा 🍕</h2>
+        <h2 class="section-title">🍕 प्रीमियम पिज़्ज़ा 🍕</h2>
         <div class="grid">
-            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">Jiggle पिज़्ज़ा</h3><span class="offer-price">8" ₹150 | 10" ₹200</span><button class="order-btn" onclick="orderItem('Jiggle पिज़्ज़ा', '150-200')">🛒 ऑर्डर करें</button></div></div>
-            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">मार्गरीटा पिज़्ज़ा</h3><span class="offer-price">8" ₹120 | 10" ₹150</span><button class="order-btn" onclick="orderItem('मार्गरीटा पिज़्ज़ा', '120-150')">🛒 ऑर्डर करें</button></div></div>
-            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">सुप्रीम लवर्स पिज़्ज़ा</h3><span class="offer-price">8" ₹160 | 10" ₹210</span><button class="order-btn" onclick="orderItem('सुप्रीम लवर्स पिज़्ज़ा', '160-210')">🛒 ऑर्डर करें</button></div></div>
-            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">पंजाबी पिज़्ज़ा</h3><span class="offer-price">8" ₹180 | 10" ₹240</span><button class="order-btn" onclick="orderItem('पंजाबी पिज़्ज़ा', '180-240')">🛒 ऑर्डर करें</button></div></div>
-            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">तंदूरी पनीर पिज़्ज़ा</h3><span class="offer-price">8" ₹130 | 10" ₹170</span><button class="order-btn" onclick="orderItem('तंदूरी पनीर पिज़्ज़ा', '130-170')">🛒 ऑर्डर करें</button></div></div>
-            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">ट्रिपल चीज पिज़्ज़ा</h3><span class="offer-price">8" ₹140 | 10" ₹200</span><button class="order-btn" onclick="orderItem('ट्रिपल चीज पिज़्ज़ा', '140-200')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">Jiggle पिज़्ज़ा</h3><span class="offer-price">8" ₹150 | 10" ₹200</span><button class="order-btn" onclick="orderItem('Jiggle पिज़्ज़ा', '150-200')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">मार्गरीटा पिज़्ज़ा</h3><span class="offer-price">8" ₹120 | 10" ₹150</span><button class="order-btn" onclick="orderItem('मार्गरीटा पिज़्ज़ा', '120-150')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">सुप्रीम लवर्स पिज़्ज़ा</h3><span class="offer-price">8" ₹160 | 10" ₹210</span><button class="order-btn" onclick="orderItem('सुप्रीम लवर्स पिज़्ज़ा', '160-210')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">पंजाबी पिज़्ज़ा</h3><span class="offer-price">8" ₹180 | 10" ₹240</span><button class="order-btn" onclick="orderItem('पंजाबी पिज़्ज़ा', '180-240')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">तंदूरी पनीर पिज़्ज़ा</h3><span class="offer-price">8" ₹130 | 10" ₹170</span><button class="order-btn" onclick="orderItem('तंदूरी पनीर पिज़्ज़ा', '130-170')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">ट्रिपल चीज पिज़्ज़ा</h3><span class="offer-price">8" ₹140 | 10" ₹200</span><button class="order-btn" onclick="orderItem('ट्रिपल चीज पिज़्ज़ा', '140-200')">🛒 ऑर्डर करें</button></div></div>
+        </div>
+    </section>
+
+    <!-- 5. 📜 ORIGINAL MENU CARDS SECTION (MOVED TO BOTTOM) 📜 -->
+    <section id="menu-cards" class="container">
+        <h2 class="section-title">📜 हमारा ओरिजिनल मेनू 📜</h2>
+        <div class="menu-image-box">
+            <img src="new item list.jpg" alt="New Items List" loading="lazy" onerror="this.src='https://placehold.co/800x600/111/ffb800?text=Menu+Coming+Soon'">
+        </div>
+        <div class="menu-image-box">
+            <img src="new menu card.jpeg" alt="Menu Card" loading="lazy" onerror="this.src='https://placehold.co/800x600/111/ffb800?text=Menu+Coming+Soon'">
         </div>
     </section>
 
