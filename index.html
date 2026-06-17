@@ -9,10 +9,10 @@
         :root {
             --primary-color: #e50914;
             --secondary-color: #ffb800;
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
+            --bg-dark: #121212;
+            --card-bg: rgba(30, 30, 30, 0.85); /* Transparent cards */
             --text-light: #ffffff;
-            --text-muted: #a0a0a0;
+            --text-muted: #d0d0d0;
         }
         * {
             margin: 0;
@@ -21,20 +21,24 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             scroll-behavior: smooth;
         }
+        
+        /* Background with low opacity Cafe Image */
         body {
-            background-color: var(--bg-color);
+            /* friendscafeimage.jpeg background with a dark overlay to make content readable */
+            background: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.90)), url('friendscafeimage.jpeg') no-repeat center center fixed;
+            background-size: cover;
             color: var(--text-light);
             overflow-x: hidden;
         }
 
         /* Motion Graphic Animations */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes glow { 0% { box-shadow: 0 0 10px var(--secondary-color); } 50% { box-shadow: 0 0 20px var(--secondary-color), 0 0 30px var(--primary-color); } 100% { box-shadow: 0 0 10px var(--secondary-color); } }
 
         /* Navbar */
         header {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 10px 20px;
             position: fixed;
             width: 100%;
             top: 0;
@@ -43,78 +47,80 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid var(--primary-color);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         .logo img {
             width: 50px;
+            height: 50px;
             border-radius: 50%;
+            border: 2px solid var(--secondary-color);
+            object-fit: cover;
         }
         .logo h1 {
             font-size: 1.5rem;
             color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         nav a {
             color: var(--text-light);
             text-decoration: none;
             margin-left: 20px;
-            font-weight: 600;
+            font-weight: bold;
             transition: color 0.3s;
         }
         nav a:hover { color: var(--secondary-color); }
 
         /* Hero Section */
         .hero {
-            margin-top: 80px;
-            padding: 60px 20px;
+            margin-top: 70px;
+            padding: 80px 20px 60px;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('friendscafeimage.jpeg') center/cover;
             animation: fadeIn 1s ease-out;
         }
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--secondary-color);
+            margin-bottom: 20px;
+            animation: glow 3s infinite;
+            object-fit: cover;
+        }
         .hero h2 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--secondary-color);
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px #000;
+            text-shadow: 3px 3px 5px #000;
         }
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-        .hero-btn {
-            padding: 12px 30px;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            display: inline-block;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
-        }
-        .hero-btn:hover {
-            transform: scale(1.1);
-            background: #ff0a16;
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 1px 1px 3px #000;
         }
 
         /* Section Titles */
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin: 50px 0 30px;
+            margin: 60px 0 40px;
             color: var(--secondary-color);
             text-transform: uppercase;
-            border-bottom: 2px dashed var(--primary-color);
+            background: rgba(0,0,0,0.6);
             display: inline-block;
-            padding-bottom: 10px;
+            padding: 10px 40px;
+            border-radius: 50px;
+            border: 1px solid var(--primary-color);
             left: 50%;
             position: relative;
             transform: translateX(-50%);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
         /* Menu Grid */
@@ -125,7 +131,7 @@
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
@@ -134,246 +140,229 @@
             background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
             transition: all 0.4s ease;
             position: relative;
-            animation: fadeIn 1s ease-out;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 1s ease-out backwards;
         }
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(255, 184, 0, 0.2);
-            border: 1px solid var(--secondary-color);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(255, 184, 0, 0.3);
+            border-color: var(--secondary-color);
         }
         .card-img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
             border-bottom: 3px solid var(--primary-color);
+            transition: transform 0.5s;
+        }
+        .card:hover .card-img {
+            transform: scale(1.05);
         }
         .card-content {
             padding: 20px;
             text-align: center;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
         }
         .item-name {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
             color: white;
+            font-weight: 700;
         }
         .price-section {
             margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-        .original-price {
-            text-decoration: line-through;
-            color: var(--text-muted);
-            margin-right: 10px;
-            font-size: 1rem;
         }
         .offer-price {
             color: #00ff00;
             font-weight: bold;
             font-size: 1.4rem;
+            text-shadow: 1px 1px 2px #000;
         }
         
-        /* Discount Badge */
-        .badge {
-            position: absolute;
-            top: 15px;
-            right: -35px;
-            background: var(--primary-color);
-            color: white;
-            padding: 5px 40px;
-            transform: rotate(45deg);
-            font-weight: bold;
-            font-size: 0.9rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
         /* Order Button */
         .order-btn {
-            background: #25D366; /* WhatsApp Green */
+            background: linear-gradient(45deg, #25D366, #128C7E);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             width: 100%;
-            border-radius: 8px;
+            border-radius: 50px;
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
         }
         .order-btn:hover {
-            background: #1ebc5a;
+            background: linear-gradient(45deg, #128C7E, #25D366);
             transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.6);
         }
 
-        /* Footer & Social */
+        /* Footer */
         footer {
-            background: #000;
+            background: rgba(0, 0, 0, 0.95);
             padding: 40px 20px;
             text-align: center;
-            margin-top: 50px;
-            border-top: 3px solid var(--secondary-color);
+            margin-top: 60px;
+            border-top: 3px solid var(--primary-color);
         }
-        .footer-info {
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        .social-links a {
-            display: inline-block;
-            margin: 0 10px;
-            padding: 10px 20px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .insta-btn {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white;
-        }
-        .map-btn {
-            background: #4285F4;
-            color: white;
-        }
-        .social-links a:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
-        }
+        .footer-info p { margin-bottom: 10px; font-size: 1.1rem; }
 
-        /* Mobile Responsive */
         @media (max-width: 768px) {
-            nav { display: none; } /* Simplified for mobile, can add hamburger menu later */
-            .hero h2 { font-size: 2.2rem; }
+            nav { display: none; }
+            .hero h2 { font-size: 2.5rem; }
+            .section-title { font-size: 1.8rem; padding: 10px 20px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Navigation -->
     <header>
         <div class="logo">
+            <!-- Header Logo -->
             <img src="friendscafelogo.jpeg" alt="Friends Cafe Logo" onerror="this.src='https://via.placeholder.com/50'">
             <h1>Friends Cafe</h1>
         </div>
         <nav>
-            <a href="#combos">स्पेशल कॉम्बो</a>
             <a href="#new-items">नए आइटम</a>
-            <a href="#menu">मेनू</a>
+            <a href="#menu-fastfood">फास्ट फूड</a>
+            <a href="#menu-pizza">प्रीमियम पिज़्ज़ा</a>
             <a href="#contact">संपर्क करें</a>
         </nav>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
+        <!-- Main Big Logo -->
+        <img src="friendscafelogo.jpeg" alt="Friends Cafe Logo Big" class="hero-logo" onerror="this.src='https://via.placeholder.com/150'">
         <h2>Good Food, Good Mood</h2>
-        <p>स्वाद भी, शुद्ध भी - सरवाड़ का अपना कैफे!</p>
-        <a href="#menu" class="hero-btn">मेनू देखें</a>
+        <p>स्वाद भी, शुद्ध भी - सरवाड़ का अपना नंबर 1 कैफे!</p>
     </section>
 
-    <section id="combos" class="container">
-        <h2 class="section-title">✨ स्पेशल कॉम्बो पैक ✨</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="badge">ऑफर!</div>
-                <img src="special combo 1.png" alt="Combo 1" class="card-img" onerror="this.src='https://via.placeholder.com/300x200'">
-                <div class="card-content">
-                    <h3 class="item-name">कॉम्बो पैक 1</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 10px; font-size:0.9rem;">पनीर टिक्का + कोल्ड कॉफी + चाइनीज़ भेल</p>
-                    <div class="price-section">
-                        <span class="original-price">₹210</span>
-                        <span class="offer-price">₹190</span>
-                    </div>
-                    <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 1', 190)">
-                        🛒 ऑर्डर करें (WhatsApp)
-                    </button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="badge">बचत!</div>
-                <img src="special combo 2.png" alt="Combo 2" class="card-img" onerror="this.src='https://via.placeholder.com/300x200'">
-                <div class="card-content">
-                    <h3 class="item-name">कॉम्बो पैक 2</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 10px; font-size:0.9rem;">पिंक सॉस पास्ता + बॉम्बे भेल + फ्रेंच फ्राई</p>
-                    <div class="price-section">
-                        <span class="original-price">₹230</span>
-                        <span class="offer-price">₹199</span>
-                    </div>
-                    <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 2', 199)">
-                        🛒 ऑर्डर करें (WhatsApp)
-                    </button>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="badge">बेस्ट डील!</div>
-                <img src="special combo 3.png" alt="Combo 3" class="card-img" onerror="this.src='https://via.placeholder.com/300x200'">
-                <div class="card-content">
-                    <h3 class="item-name">कॉम्बो पैक 3</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 10px; font-size:0.9rem;">पंजाबी पिज़्ज़ा 8" + कोल्ड कॉफी + मसाला सैंडविच</p>
-                    <div class="price-section">
-                        <span class="original-price">₹330</span>
-                        <span class="offer-price">₹299</span>
-                    </div>
-                    <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 3', 299)">
-                        🛒 ऑर्डर करें (WhatsApp)
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- 🔥 NEW ITEMS SECTION 🔥 -->
     <section id="new-items" class="container">
-        <h2 class="section-title">🔥 नए आइटम (Try Now!) 🔥</h2>
+        <h2 class="section-title">🔥 नया आइटम (Try Now!) 🔥</h2>
         <div class="grid">
             <div class="card">
-                <img src="new item list.jpg" alt="मटर पनीर" class="card-img" style="object-position: top;" onerror="this.src='https://via.placeholder.com/300x200'">
+                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=80" alt="मटर पनीर" class="card-img">
                 <div class="card-content">
-                    <h3 class="item-name">मटर पनीर / कड़ाई पनीर</h3>
+                    <h3 class="item-name">मटर पनीर</h3>
                     <div class="price-section"><span class="offer-price">Best Price</span></div>
-                    <button class="order-btn" onclick="orderItem('मटर/कड़ाई पनीर', 'Best Price')">🛒 ऑर्डर करें</button>
+                    <button class="order-btn" onclick="orderItem('मटर पनीर', 'Best Price')">🛒 ऑर्डर करें (WhatsApp)</button>
                 </div>
             </div>
             <div class="card">
-                <img src="new item list.jpg" alt="छोले कुल्चे" class="card-img" style="object-position: center;" onerror="this.src='https://via.placeholder.com/300x200'">
+                <img src="https://images.unsplash.com/photo-1589301760014-d929f39ce9b1?auto=format&fit=crop&w=600&q=80" alt="कड़ाई पनीर" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">कड़ाई पनीर</h3>
+                    <div class="price-section"><span class="offer-price">Best Price</span></div>
+                    <button class="order-btn" onclick="orderItem('कड़ाई पनीर', 'Best Price')">🛒 ऑर्डर करें (WhatsApp)</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&w=600&q=80" alt="मोमोज" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">मोमोज (स्टीम/फ्राई)</h3>
+                    <div class="price-section"><span class="offer-price">₹50 / ₹60</span></div>
+                    <button class="order-btn" onclick="orderItem('मोमोज', '50-60')">🛒 ऑर्डर करें (WhatsApp)</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=80" alt="छोले कुल्चे" class="card-img">
                 <div class="card-content">
                     <h3 class="item-name">छोले कुल्चे</h3>
                     <div class="price-section"><span class="offer-price">₹60</span></div>
-                    <button class="order-btn" onclick="orderItem('छोले कुल्चे', 60)">🛒 ऑर्डर करें</button>
+                    <button class="order-btn" onclick="orderItem('छोले कुल्चे', 60)">🛒 ऑर्डर करें (WhatsApp)</button>
                 </div>
             </div>
             <div class="card">
-                <img src="new item list.jpg" alt="चाइनीज भेल" class="card-img" style="object-position: bottom;" onerror="this.src='https://via.placeholder.com/300x200'">
+                <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=600&q=80" alt="चाइनीज भेल" class="card-img">
                 <div class="card-content">
                     <h3 class="item-name">चाइनीज भेल</h3>
                     <div class="price-section"><span class="offer-price">₹40</span></div>
-                    <button class="order-btn" onclick="orderItem('चाइनीज भेल', 40)">🛒 ऑर्डर करें</button>
+                    <button class="order-btn" onclick="orderItem('चाइनीज भेल', 40)">🛒 ऑर्डर करें (WhatsApp)</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?auto=format&fit=crop&w=600&q=80" alt="स्प्रिंग रोल" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">स्प्रिंग रोल</h3>
+                    <div class="price-section"><span class="offer-price">₹50</span></div>
+                    <button class="order-btn" onclick="orderItem('स्प्रिंग रोल', 50)">🛒 ऑर्डर करें (WhatsApp)</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="menu" class="container">
-        <h2 class="section-title">🍔 डिजिटल मेनू कार्ड 🍕</h2>
+    <!-- 🍕 PREMIUM PIZZA MENU 🍕 -->
+    <section id="menu-pizza" class="container">
+        <h2 class="section-title">🍕 प्रीमियम पिज़्ज़ा मेनू 🍕</h2>
         <div class="grid">
             <div class="card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="Jiggle Pizza" class="card-img">
                 <div class="card-content">
-                    <h3 class="item-name">मोमोज (स्टीम / फ्राई)</h3>
-                    <div class="price-section"><span class="offer-price">₹50 / ₹60</span></div>
-                    <button class="order-btn" onclick="orderItem('मोमोज', '50/60')">🛒 ऑर्डर करें</button>
+                    <h3 class="item-name">Jiggle पिज़्ज़ा</h3>
+                    <div class="price-section"><span class="offer-price">8" ₹150 | 10" ₹200</span></div>
+                    <button class="order-btn" onclick="orderItem('Jiggle पिज़्ज़ा', '150-200')">🛒 ऑर्डर करें</button>
                 </div>
             </div>
             <div class="card">
+                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80" alt="Margherita Pizza" class="card-img">
                 <div class="card-content">
-                    <h3 class="item-name">स्प्रिंग रोल</h3>
-                    <div class="price-section"><span class="offer-price">₹50</span></div>
-                    <button class="order-btn" onclick="orderItem('स्प्रिंग रोल', 50)">🛒 ऑर्डर करें</button>
+                    <h3 class="item-name">मार्गरीटा पिज़्ज़ा</h3>
+                    <div class="price-section"><span class="offer-price">8" ₹120 | 10" ₹150</span></div>
+                    <button class="order-btn" onclick="orderItem('मार्गरीटा पिज़्ज़ा', '120-150')">🛒 ऑर्डर करें</button>
                 </div>
             </div>
             <div class="card">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt="Supreme Lovers" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">सुप्रीम लवर्स पिज़्ज़ा</h3>
+                    <div class="price-section"><span class="offer-price">8" ₹160 | 10" ₹210</span></div>
+                    <button class="order-btn" onclick="orderItem('सुप्रीम लवर्स पिज़्ज़ा', '160-210')">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1593504049359-74330189a345?auto=format&fit=crop&w=600&q=80" alt="Punjabi Pizza" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">पंजाबी पिज़्ज़ा</h3>
+                    <div class="price-section"><span class="offer-price">8" ₹180 | 10" ₹240</span></div>
+                    <button class="order-btn" onclick="orderItem('पंजाबी पिज़्ज़ा', '180-240')">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=600&q=80" alt="Tandoori Paneer" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">तंदूरी पनीर पिज़्ज़ा</h3>
+                    <div class="price-section"><span class="offer-price">8" ₹130 | 10" ₹170</span></div>
+                    <button class="order-btn" onclick="orderItem('तंदूरी पनीर पिज़्ज़ा', '130-170')">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1548369937-47519962c11a?auto=format&fit=crop&w=600&q=80" alt="Triple Cheese" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">ट्रिपल चीज पिज़्ज़ा</h3>
+                    <div class="price-section"><span class="offer-price">8" ₹140 | 10" ₹200</span></div>
+                    <button class="order-btn" onclick="orderItem('ट्रिपल चीज पिज़्ज़ा', '140-200')">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🍔 FAST FOOD & CHINESE MENU 🍔 -->
+    <section id="menu-fastfood" class="container">
+        <h2 class="section-title">🍔 फास्ट फूड और स्नैक्स 🍟</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=80" alt="Paneer Tikka" class="card-img">
                 <div class="card-content">
                     <h3 class="item-name">पनीर टिक्का</h3>
                     <div class="price-section"><span class="offer-price">₹99</span></div>
@@ -381,13 +370,63 @@
                 </div>
             </div>
             <div class="card">
+                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=80" alt="Afghani Paneer Tikka" class="card-img">
                 <div class="card-content">
-                    <h3 class="item-name">पंजाबी पिज़्ज़ा (8")</h3>
-                    <div class="price-section"><span class="offer-price">₹180</span></div>
-                    <button class="order-btn" onclick="orderItem('पंजाबी पिज़्ज़ा 8 इंच', 180)">🛒 ऑर्डर करें</button>
+                    <h3 class="item-name">अफगानी पनीर टिक्का</h3>
+                    <div class="price-section"><span class="offer-price">₹140</span></div>
+                    <button class="order-btn" onclick="orderItem('अफगानी पनीर टिक्का', 140)">🛒 ऑर्डर करें</button>
                 </div>
             </div>
             <div class="card">
+                <img src="https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?auto=format&fit=crop&w=600&q=80" alt="Paneer Momos" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">पनीर मोमोज</h3>
+                    <div class="price-section"><span class="offer-price">₹70</span></div>
+                    <button class="order-btn" onclick="orderItem('पनीर मोमोज', 70)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" alt="Cheese Chilli Garlic Grill" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">चीज चिली गार्लिक ग्रील</h3>
+                    <div class="price-section"><span class="offer-price">₹80</span></div>
+                    <button class="order-btn" onclick="orderItem('चीज चिली गार्लिक ग्रील', 80)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=600&q=80" alt="Vada Pav" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">वड़ा पाव</h3>
+                    <div class="price-section"><span class="offer-price">₹40</span></div>
+                    <button class="order-btn" onclick="orderItem('वड़ा पाव', 40)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1626804475297-4160bdfafdd8?auto=format&fit=crop&w=600&q=80" alt="Chinese Patties" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">चाइनीज पैटीज़</h3>
+                    <div class="price-section"><span class="offer-price">₹40</span></div>
+                    <button class="order-btn" onclick="orderItem('चाइनीज पैटीज़', 40)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1589301760014-d929f39ce9b1?auto=format&fit=crop&w=600&q=80" alt="Bombay Bhel" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">बॉम्बे भेल</h3>
+                    <div class="price-section"><span class="offer-price">₹60</span></div>
+                    <button class="order-btn" onclick="orderItem('बॉम्बे भेल', 60)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=80" alt="Paneer 65" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">पनीर 65</h3>
+                    <div class="price-section"><span class="offer-price">₹120</span></div>
+                    <button class="order-btn" onclick="orderItem('पनीर 65', 120)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=600&q=80" alt="Pink Sauce Pasta" class="card-img">
                 <div class="card-content">
                     <h3 class="item-name">पिंक सॉस पास्ता</h3>
                     <div class="price-section"><span class="offer-price">₹100</span></div>
@@ -395,39 +434,41 @@
                 </div>
             </div>
             <div class="card">
+                <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=600&q=80" alt="Combination Pasta" class="card-img">
                 <div class="card-content">
-                    <h3 class="item-name">वड़ा पाव</h3>
-                    <div class="price-section"><span class="offer-price">₹40</span></div>
-                    <button class="order-btn" onclick="orderItem('वड़ा पाव', 40)">🛒 ऑर्डर करें</button>
+                    <h3 class="item-name">कॉम्बिनेशन पिंक पास्ता</h3>
+                    <div class="price-section"><span class="offer-price">₹100</span></div>
+                    <button class="order-btn" onclick="orderItem('कॉम्बिनेशन पिंक पास्ता', 100)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1588144671404-58eb11f7c320?auto=format&fit=crop&w=600&q=80" alt="Veg Cutlet" class="card-img">
+                <div class="card-content">
+                    <h3 class="item-name">चीज वेज कटलेट</h3>
+                    <div class="price-section"><span class="offer-price">₹50</span></div>
+                    <button class="order-btn" onclick="orderItem('चीज वेज कटलेट', 50)">🛒 ऑर्डर करें</button>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Footer & Contact -->
     <footer id="contact">
         <div class="footer-info">
-            <h2 style="color: var(--secondary-color); margin-bottom: 10px;">Friends Cafe Sarwar</h2>
+            <h2 style="color: var(--secondary-color); margin-bottom: 15px;">Friends Cafe Sarwar</h2>
             <p>📍 <strong>लोकेशन:</strong> हाई सेकेंडरी स्कूल रोड, सरवाड़</p>
             <p>📞 <strong>संपर्क:</strong> +91 95888 34575</p>
-            <p style="margin-top: 10px; color: var(--text-muted);">अच्छा खाना, अच्छी बाते और यादगार पल!</p>
-        </div>
-        
-        <div class="social-links">
-            <a href="https://www.instagram.com/friendscafesarwar/" target="_blank" class="insta-btn">
-                📸 Instagram पर फॉलो करें
-            </a>
-            <a href="https://www.google.com/maps/place/FRIENDS+CAFE+SARWAR/@26.0651827,75.010642,17z/data=!4m10!1m2!2m1!1sfriends+cafe+sarwar!3m6!1s0x396eb4581c32ca49:0xe0d45771af9bb443!8m2!3d26.0651827!4d75.0154056!15sChNmcmllbmRzIGNhZmUgc2Fyd2FyWhUiE2ZyaWVuZHMgY2FmZSBzYXJ3YXKSARFiYXNxdWVfcmVzdGF1cmFudOABAA!16s%2Fg%2F11lcmrd9yj?entry=ttu&g_ep=EgoyMDI2MDYxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-btn">
-                🗺️ Google Maps लोकेशन
-            </a>
+            <p style="margin-top: 15px; color: var(--secondary-color); font-weight: bold;">अच्छा खाना, अच्छी बाते और यादगार पल!</p>
         </div>
     </footer>
 
+    <!-- JavaScript for WhatsApp Integration -->
     <script>
         function orderItem(itemName, price) {
-            // WhatsApp Number
+            // Your WhatsApp Number
             const phoneNumber = "919588834575";
             
-            // Format the message
+            // Format the message in Hindi
             const message = `नमस्ते फ्रेंड्स कैफे! 🍔 \n\nमैं यह ऑर्डर करना चाहता/चाहती हूँ:\n\n👉 *आइटम:* ${itemName}\n💰 *कीमत:* ₹${price}\n\nकृपया मुझे बताएं कि मेरा ऑर्डर कब तक तैयार हो जाएगा?`;
             
             // Encode message for URL
