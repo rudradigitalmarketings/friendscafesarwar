@@ -89,8 +89,14 @@
         .order-btn:hover { background: linear-gradient(45deg, #128C7E, #25D366); transform: scale(1.02); }
 
         /* Original Menu Images Styling (Moved to Bottom) */
-        .menu-image-box { text-align: center; margin-bottom: 20px; }
-        .menu-image-box img { max-width: 100%; border-radius: 12px; border: 2px solid var(--secondary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.8); }
+        .menu-image-box { text-align: center; margin-bottom: 40px; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 15px; border: 1px solid #333; }
+        .menu-image-box img { max-width: 100%; border-radius: 12px; border: 2px solid var(--secondary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.8); margin-bottom: 15px; }
+        .full-menu-btn {
+            background: var(--primary-color); color: white; border: none;
+            padding: 12px 30px; border-radius: 50px; font-size: 1.1rem; font-weight: bold;
+            cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(229, 9, 20, 0.5); display: inline-flex; align-items: center; gap: 8px;
+        }
+        .full-menu-btn:hover { background: #ff0a16; transform: scale(1.05); }
 
         /* Floating Buttons */
         .floating-buttons { position: fixed; bottom: 20px; right: 15px; display: flex; flex-direction: column; gap: 12px; z-index: 9999; }
@@ -103,7 +109,7 @@
         .float-btn svg { width: 22px; height: 22px; }
 
         /* Footer */
-        footer { background: rgba(0, 0, 0, 0.98); padding: 30px 15px 20px; text-align: center; margin-top: 40px; border-top: 3px solid var(--primary-color); }
+        footer { background: rgba(0, 0, 0, 0.98); padding: 30px 15px 20px; text-align: center; margin-top: 20px; border-top: 3px solid var(--primary-color); }
         .developer-credit { margin-top: 25px; padding-top: 15px; border-top: 1px dashed #444; font-size: 0.9rem; color: #ccc; line-height: 1.6; }
         .developer-credit strong { color: var(--secondary-color); font-size: 1rem; }
         .developer-credit a { color: #25D366; text-decoration: none; font-weight: bold; }
@@ -127,6 +133,7 @@
             <a href="#combos">कॉम्बो पैक</a>
             <a href="#menu-fastfood">फ़ास्ट फ़ूड</a>
             <a href="#menu-pizza">पिज़्ज़ा</a>
+            <a href="#menu-cards">ओरिजिनल मेनू</a>
         </nav>
     </header>
 
@@ -230,12 +237,29 @@
 
     <!-- 5. 📜 ORIGINAL MENU CARDS SECTION (MOVED TO BOTTOM) 📜 -->
     <section id="menu-cards" class="container">
-        <h2 class="section-title">📜 हमारा ओरिजिनल मेनू 📜</h2>
+        <h2 class="section-title">📜 हमारा पूरा मेनू 📜</h2>
+        
+        <!-- New Item List Image -->
         <div class="menu-image-box">
-            <img src="new item list.jpg" alt="New Items List" loading="lazy" onerror="this.src='https://placehold.co/800x600/111/ffb800?text=Menu+Coming+Soon'">
+            <h3 style="color:var(--secondary-color); margin-bottom: 10px;">नया आइटम मेनू</h3>
+            <!-- Note: %20 used for spaces in image name so it loads properly -->
+            <img src="new%20item%20list.jpg" alt="New Items List" loading="lazy" onerror="this.src='https://placehold.co/800x600/111/ffb800?text=Menu+Image+Not+Found'">
+            <br>
+            <button class="full-menu-btn" onclick="orderMenu('नए आइटम की लिस्ट से')">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326z"/></svg>
+                इस लिस्ट से ऑर्डर करें
+            </button>
         </div>
+
+        <!-- Main Menu Card Image -->
         <div class="menu-image-box">
-            <img src="new menu card.jpeg" alt="Menu Card" loading="lazy" onerror="this.src='https://placehold.co/800x600/111/ffb800?text=Menu+Coming+Soon'">
+            <h3 style="color:var(--secondary-color); margin-bottom: 10px;">हमारा डिजिटल मेनू</h3>
+            <img src="new%20menu%20card.jpeg" alt="Main Menu Card" loading="lazy" onerror="this.src='https://placehold.co/800x600/111/ffb800?text=Menu+Image+Not+Found'">
+            <br>
+            <button class="full-menu-btn" onclick="orderMenu('मेनू कार्ड से')">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326z"/></svg>
+                इस मेनू से ऑर्डर करें
+            </button>
         </div>
     </section>
 
@@ -266,6 +290,13 @@
         function orderItem(itemName, price) {
             const phoneNumber = "919588834575";
             const message = `नमस्ते फ्रेंड्स कैफे! 🍔 \n\nमैं यह ऑर्डर करना चाहता हूँ:\n\n👉 *आइटम:* ${itemName}\n💰 *कीमत:* ₹${price}\n\nकृपया मुझे बताएं कि मेरा ऑर्डर कब तक तैयार हो जाएगा?`;
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        function orderMenu(source) {
+            const phoneNumber = "919588834575";
+            const message = `नमस्ते फ्रेंड्स कैफे! 🍔 \n\nमैं आपके *${source}* देखकर कुछ ऑर्डर करना चाहता हूँ।\nकृपया मुझे बताएं कि मेरा ऑर्डर कब तक तैयार हो जाएगा?`;
             const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappURL, '_blank');
         }
