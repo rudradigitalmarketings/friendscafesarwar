@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Cache Control: सुपरफास्ट स्पीड के लिए -->
+    <!-- Cache Control: पुरानी मेमोरी डिलीट और सुपरफास्ट लोडिंग -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
@@ -40,8 +40,8 @@
         nav a:hover { color: var(--secondary-color); }
 
         /* Hero Section */
-        .hero { margin-top: 65px; padding: 50px 15px 30px; text-align: center; }
-        .hero-logo { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--secondary-color); margin-bottom: 12px; object-fit: cover; box-shadow: 0 0 20px rgba(255,184,0,0.4); }
+        .hero { margin-top: 65px; padding: 40px 15px 20px; text-align: center; }
+        .hero-logo { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--secondary-color); margin-bottom: 12px; object-fit: cover; box-shadow: 0 0 20px rgba(255,184,0,0.4); }
         .hero h2 { font-size: 2.2rem; color: var(--secondary-color); margin-bottom: 8px; text-shadow: 2px 2px 5px #000; letter-spacing: 1px; }
         .hero p { font-size: 1.1rem; color: #ddd; }
 
@@ -55,11 +55,15 @@
             position: relative; left: 50%; transform: translateX(-50%);
         }
 
-        /* Menu Grid */
+        /* Container & Grid */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 10px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
 
-        /* Item Cards */
+        /* Original Menu Images Styling */
+        .menu-image-box { text-align: center; margin-bottom: 20px; }
+        .menu-image-box img { max-width: 100%; border-radius: 12px; border: 2px solid var(--secondary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.8); }
+
+        /* Icon Cards */
         .card {
             background: var(--card-bg); border-radius: 10px; overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.8); transition: transform 0.3s;
@@ -67,14 +71,16 @@
         }
         .card:hover { transform: translateY(-5px); border-color: var(--secondary-color); box-shadow: 0 6px 15px rgba(255,184,0,0.2); }
         
-        .card-img { width: 100%; height: 140px; object-fit: cover; border-bottom: 2px solid var(--primary-color); background-color: #222; }
-        .combo-img { height: 160px; object-fit: contain; background: #000; padding: 5px; }
+        .card-icon { font-size: 3.5rem; text-align: center; padding: 20px 0 10px; background: rgba(0,0,0,0.4); border-bottom: 1px solid #444; }
+        
+        /* Combo Cards (Only Images) */
+        .combo-img { width: 100%; height: 180px; object-fit: contain; background: #000; padding: 5px; border-bottom: 2px solid var(--primary-color); }
         
         .card-content { padding: 12px 10px; text-align: center; display: flex; flex-direction: column; flex-grow: 1; justify-content: flex-end; }
-        .item-name { font-size: 1.05rem; margin-bottom: 5px; color: white; font-weight: 700; line-height: 1.3; }
+        .item-name { font-size: 1.1rem; margin-bottom: 5px; color: white; font-weight: 700; line-height: 1.3; }
         
-        /* Combo Description */
-        .combo-desc { font-size: 0.85rem; color: #bbb; margin-bottom: 10px; line-height: 1.4; text-align: left; background: #111; padding: 8px; border-radius: 5px; border-left: 2px solid var(--secondary-color); }
+        /* Combo Description (Hindi list) */
+        .combo-desc { font-size: 0.9rem; color: #ddd; margin: 10px 0; line-height: 1.5; text-align: left; background: #111; padding: 10px; border-radius: 5px; border-left: 3px solid var(--secondary-color); }
         
         .offer-price { color: #00ff00; font-weight: bold; font-size: 1.15rem; display: block; margin-bottom: 10px; text-shadow: 1px 1px 2px #000; }
         
@@ -105,148 +111,125 @@
         @media (max-width: 768px) {
             nav { display: none; }
             .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } /* Mobile me 2 items */
-            .card-img { height: 110px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
         <div class="logo">
             <img src="friendscafelogo.jpeg" alt="Logo" onerror="this.src='https://placehold.co/50x50/111/ffb800?text=FC'">
             <h1>Friends Cafe</h1>
         </div>
         <nav>
-            <a href="#new-items">नए आइटम</a>
+            <a href="#menu-cards">ओरिजिनल मेनू</a>
             <a href="#combos">कॉम्बो पैक</a>
             <a href="#menu-fastfood">फ़ास्ट फ़ूड</a>
             <a href="#menu-pizza">पिज़्ज़ा</a>
         </nav>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <img src="friendscafelogo.jpeg" alt="Logo Big" class="hero-logo" onerror="this.src='https://placehold.co/150x150/111/ffb800?text=FC'">
         <h2>Good Food, Good Mood</h2>
         <p>स्वाद भी, शुद्ध भी - सरवाड़ का अपना कैफे!</p>
     </section>
 
-    <!-- 1. 🔥 NEW ITEMS SECTION 🔥 -->
-    <section id="new-items" class="container">
-        <h2 class="section-title">🔥 नए आइटम 🔥</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="matar-paneer.jpg" alt="मटर पनीर" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'">
-                <div class="card-content">
-                    <h3 class="item-name">मटर पनीर</h3>
-                    <span class="offer-price">Best Price</span>
-                    <button class="order-btn" onclick="orderItem('मटर पनीर', 'Best Price')">ऑर्डर करें</button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="kadai-paneer.jpg" alt="कड़ाई पनीर" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'">
-                <div class="card-content">
-                    <h3 class="item-name">कड़ाई पनीर</h3>
-                    <span class="offer-price">Best Price</span>
-                    <button class="order-btn" onclick="orderItem('कड़ाई पनीर', 'Best Price')">ऑर्डर करें</button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="chole-kulche.jpg" alt="छोले कुल्चे" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'">
-                <div class="card-content">
-                    <h3 class="item-name">छोले कुल्चे</h3>
-                    <span class="offer-price">₹60</span>
-                    <button class="order-btn" onclick="orderItem('छोले कुल्चे', 60)">ऑर्डर करें</button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="chinese-bhel.jpg" alt="चाइनीज भेल" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'">
-                <div class="card-content">
-                    <h3 class="item-name">चाइनीज भेल</h3>
-                    <span class="offer-price">₹40</span>
-                    <button class="order-btn" onclick="orderItem('चाइनीज भेल', 40)">ऑर्डर करें</button>
-                </div>
-            </div>
-            <div class="card">
-                <img src="spring-roll.jpg" alt="स्प्रिंग रोल" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'">
-                <div class="card-content">
-                    <h3 class="item-name">स्प्रिंग रोल</h3>
-                    <span class="offer-price">₹50</span>
-                    <button class="order-btn" onclick="orderItem('स्प्रिंग रोल', 50)">ऑर्डर करें</button>
-                </div>
-            </div>
+    <!-- 1. 📜 ORIGINAL MENU CARDS SECTION 📜 -->
+    <section id="menu-cards" class="container">
+        <h2 class="section-title">📜 हमारा ओरिजिनल मेनू 📜</h2>
+        <div class="menu-image-box">
+            <img src="new item list.jpg" alt="New Items List" loading="lazy">
+        </div>
+        <div class="menu-image-box">
+            <img src="new menu card.jpeg" alt="Menu Card" loading="lazy">
         </div>
     </section>
 
-    <!-- 2. ✨ SPECIAL COMBOS SECTION ✨ -->
+    <!-- 2. ✨ SPECIAL COMBOS SECTION (Images Allowed) ✨ -->
     <section id="combos" class="container">
         <h2 class="section-title">✨ स्पेशल कॉम्बो ✨</h2>
         <div class="grid">
             <div class="card">
-                <img src="special combo 1.png" alt="Combo 1" class="card-img combo-img" loading="lazy">
+                <img src="special combo 1.png" alt="Combo 1" class="combo-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/000/ffb800?text=Combo+1'">
                 <div class="card-content">
                     <h3 class="item-name">कॉम्बो पैक 1</h3>
                     <div class="combo-desc">
-                        • पनीर टिक्का<br>• कोल्ड कॉफी<br>• चाइनीज़ भेल
+                        🔸 पनीर टिक्का<br>
+                        🔸 कोल्ड कॉफी<br>
+                        🔸 चाइनीज़ भेल
                     </div>
                     <span class="offer-price">₹190 <del style="color:#aaa; font-size:0.85rem;">(₹210)</del></span>
-                    <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 1', 190)">ऑर्डर करें</button>
+                    <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 1', 190)">🛒 ऑर्डर करें</button>
                 </div>
             </div>
             <div class="card">
-                <img src="special combo 2.png" alt="Combo 2" class="card-img combo-img" loading="lazy">
+                <img src="special combo 2.png" alt="Combo 2" class="combo-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/000/ffb800?text=Combo+2'">
                 <div class="card-content">
                     <h3 class="item-name">कॉम्बो पैक 2</h3>
                     <div class="combo-desc">
-                        • पिंक सॉस पास्ता<br>• बॉम्बे भेल<br>• फ्रेंच फ्राई
+                        🔸 पिंक सॉस पास्ता<br>
+                        🔸 बॉम्बे भेल<br>
+                        🔸 फ्रेंच फ्राई
                     </div>
                     <span class="offer-price">₹199 <del style="color:#aaa; font-size:0.85rem;">(₹230)</del></span>
-                    <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 2', 199)">ऑर्डर करें</button>
+                    <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 2', 199)">🛒 ऑर्डर करें</button>
                 </div>
             </div>
             <div class="card">
-                <img src="special combo 3.png" alt="Combo 3" class="card-img combo-img" loading="lazy">
+                <img src="special combo 3.png" alt="Combo 3" class="combo-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/000/ffb800?text=Combo+3'">
                 <div class="card-content">
                     <h3 class="item-name">कॉम्बो पैक 3</h3>
                     <div class="combo-desc">
-                        • पंजाबी पिज़्ज़ा 8"<br>• कोल्ड कॉफी<br>• मसाला सैंडविच
+                        🔸 पंजाबी पिज़्ज़ा 8"<br>
+                        🔸 कोल्ड कॉफी<br>
+                        🔸 मसाला सैंडविच
                     </div>
                     <span class="offer-price">₹299 <del style="color:#aaa; font-size:0.85rem;">(₹330)</del></span>
-                    <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 3', 299)">ऑर्डर करें</button>
+                    <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 3', 299)">🛒 ऑर्डर करें</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. 🍔 FAST FOOD MENU 🍔 -->
+    <!-- 3. 🍔 FAST FOOD MENU (ICONS ONLY) 🍔 -->
     <section id="menu-fastfood" class="container">
         <h2 class="section-title">🍔 फ़ास्ट फ़ूड & स्नैक्स 🍟</h2>
         <div class="grid">
-            <div class="card"><img src="paneer-tikka.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">पनीर टिक्का</h3><span class="offer-price">₹99</span><button class="order-btn" onclick="orderItem('पनीर टिक्का', 99)">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="afghani-paneer-tikka.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">अफगानी पनीर टिक्का</h3><span class="offer-price">₹140</span><button class="order-btn" onclick="orderItem('अफगानी पनीर टिक्का', 140)">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="momos-steam.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">मोमोज (स्टीम)</h3><span class="offer-price">₹50</span><button class="order-btn" onclick="orderItem('मोमोज (स्टीम)', 50)">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="momos-fry.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">मोमोज (फ्राई)</h3><span class="offer-price">₹60</span><button class="order-btn" onclick="orderItem('मोमोज (फ्राई)', 60)">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="paneer-momos.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">पनीर मोमोज</h3><span class="offer-price">₹70</span><button class="order-btn" onclick="orderItem('पनीर मोमोज', 70)">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="cheese-chilli-grill.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">चीज चिली गार्लिक ग्रील</h3><span class="offer-price">₹80</span><button class="order-btn" onclick="orderItem('चीज चिली गार्लिक ग्रील', 80)">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="vada-pav.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">वड़ा पाव</h3><span class="offer-price">₹40</span><button class="order-btn" onclick="orderItem('वड़ा पाव', 40)">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="chinese-patties.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">चाइनीज पैटीज़</h3><span class="offer-price">₹40</span><button class="order-btn" onclick="orderItem('चाइनीज पैटीज़', 40)">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="bombay-bhel.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">बॉम्बे भेल</h3><span class="offer-price">₹60</span><button class="order-btn" onclick="orderItem('बॉम्बे भेल', 60)">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="paneer-65.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">पनीर 65</h3><span class="offer-price">₹120</span><button class="order-btn" onclick="orderItem('पनीर 65', 120)">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="pink-sauce-pasta.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">पिंक सॉस पास्ता</h3><span class="offer-price">₹100</span><button class="order-btn" onclick="orderItem('पिंक सॉस पास्ता', 100)">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="combo-pink-pasta.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">कॉम्बिनेशन पिंक पास्ता</h3><span class="offer-price">₹100</span><button class="order-btn" onclick="orderItem('कॉम्बिनेशन पिंक पास्ता', 100)">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="veg-cutlet.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">चीज वेज कटलेट</h3><span class="offer-price">₹50</span><button class="order-btn" onclick="orderItem('चीज वेज कटलेट', 50)">ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥘</div><div class="card-content"><h3 class="item-name">मटर पनीर</h3><span class="offer-price">Best Price</span><button class="order-btn" onclick="orderItem('मटर पनीर', 'Best Price')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥘</div><div class="card-content"><h3 class="item-name">कड़ाई पनीर</h3><span class="offer-price">Best Price</span><button class="order-btn" onclick="orderItem('कड़ाई पनीर', 'Best Price')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-content"><h3 class="item-name">छोले कुल्चे</h3><span class="offer-price">₹60</span><button class="order-btn" onclick="orderItem('छोले कुल्चे', 60)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥗</div><div class="card-content"><h3 class="item-name">चाइनीज भेल</h3><span class="offer-price">₹40</span><button class="order-btn" onclick="orderItem('चाइनीज भेल', 40)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🌯</div><div class="card-content"><h3 class="item-name">स्प्रिंग रोल</h3><span class="offer-price">₹50</span><button class="order-btn" onclick="orderItem('स्प्रिंग रोल', 50)">🛒 ऑर्डर करें</button></div></div>
+            
+            <div class="card"><div class="card-icon">🍢</div><div class="card-content"><h3 class="item-name">पनीर टिक्का</h3><span class="offer-price">₹99</span><button class="order-btn" onclick="orderItem('पनीर टिक्का', 99)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍢</div><div class="card-content"><h3 class="item-name">अफगानी पनीर टिक्का</h3><span class="offer-price">₹140</span><button class="order-btn" onclick="orderItem('अफगानी पनीर टिक्का', 140)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥟</div><div class="card-content"><h3 class="item-name">मोमोज (स्टीम)</h3><span class="offer-price">₹50</span><button class="order-btn" onclick="orderItem('मोमोज (स्टीम)', 50)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥟</div><div class="card-content"><h3 class="item-name">मोमोज (फ्राई)</h3><span class="offer-price">₹60</span><button class="order-btn" onclick="orderItem('मोमोज (फ्राई)', 60)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥟</div><div class="card-content"><h3 class="item-name">पनीर मोमोज</h3><span class="offer-price">₹70</span><button class="order-btn" onclick="orderItem('पनीर मोमोज', 70)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥪</div><div class="card-content"><h3 class="item-name">चीज चिली गार्लिक ग्रील</h3><span class="offer-price">₹80</span><button class="order-btn" onclick="orderItem('चीज चिली गार्लिक ग्रील', 80)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍔</div><div class="card-content"><h3 class="item-name">वड़ा पाव</h3><span class="offer-price">₹40</span><button class="order-btn" onclick="orderItem('वड़ा पाव', 40)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥟</div><div class="card-content"><h3 class="item-name">चाइनीज पैटीज़</h3><span class="offer-price">₹40</span><button class="order-btn" onclick="orderItem('चाइनीज पैटीज़', 40)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥗</div><div class="card-content"><h3 class="item-name">बॉम्बे भेल</h3><span class="offer-price">₹60</span><button class="order-btn" onclick="orderItem('बॉम्बे भेल', 60)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🥘</div><div class="card-content"><h3 class="item-name">पनीर 65</h3><span class="offer-price">₹120</span><button class="order-btn" onclick="orderItem('पनीर 65', 120)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍝</div><div class="card-content"><h3 class="item-name">पिंक सॉस पास्ता</h3><span class="offer-price">₹100</span><button class="order-btn" onclick="orderItem('पिंक सॉस पास्ता', 100)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍝</div><div class="card-content"><h3 class="item-name">कॉम्बिनेशन पिंक पास्ता</h3><span class="offer-price">₹100</span><button class="order-btn" onclick="orderItem('कॉम्बिनेशन पिंक पास्ता', 100)">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🧆</div><div class="card-content"><h3 class="item-name">चीज वेज कटलेट</h3><span class="offer-price">₹50</span><button class="order-btn" onclick="orderItem('चीज वेज कटलेट', 50)">🛒 ऑर्डर करें</button></div></div>
         </div>
     </section>
 
-    <!-- 4. 🍕 PREMIUM PIZZA MENU 🍕 -->
+    <!-- 4. 🍕 PREMIUM PIZZA MENU (ICONS ONLY) 🍕 -->
     <section id="menu-pizza" class="container">
         <h2 class="section-title">🍕 प्रीमियम पिज़्ज़ा 🍕</h2>
         <div class="grid">
-            <div class="card"><img src="jiggle-pizza.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">Jiggle पिज़्ज़ा</h3><span class="offer-price">8" ₹150 | 10" ₹200</span><button class="order-btn" onclick="orderItem('Jiggle पिज़्ज़ा', '150-200')">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="margherita-pizza.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">मार्गरीटा पिज़्ज़ा</h3><span class="offer-price">8" ₹120 | 10" ₹150</span><button class="order-btn" onclick="orderItem('मार्गरीटा पिज़्ज़ा', '120-150')">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="supreme-lovers-pizza.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">सुप्रीम लवर्स पिज़्ज़ा</h3><span class="offer-price">8" ₹160 | 10" ₹210</span><button class="order-btn" onclick="orderItem('सुप्रीम लवर्स पिज़्ज़ा', '160-210')">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="punjabi-pizza.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">पंजाबी पिज़्ज़ा</h3><span class="offer-price">8" ₹180 | 10" ₹240</span><button class="order-btn" onclick="orderItem('पंजाबी पिज़्ज़ा', '180-240')">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="tandoori-paneer-pizza.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">तंदूरी पनीर पिज़्ज़ा</h3><span class="offer-price">8" ₹130 | 10" ₹170</span><button class="order-btn" onclick="orderItem('तंदूरी पनीर पिज़्ज़ा', '130-170')">ऑर्डर करें</button></div></div>
-            <div class="card"><img src="triple-cheese-pizza.jpg" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/400x250/222/ffb800?text=Friends+Cafe'"><div class="card-content"><h3 class="item-name">ट्रिपल चीज पिज़्ज़ा</h3><span class="offer-price">8" ₹140 | 10" ₹200</span><button class="order-btn" onclick="orderItem('ट्रिपल चीज पिज़्ज़ा', '140-200')">ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">Jiggle पिज़्ज़ा</h3><span class="offer-price">8" ₹150 | 10" ₹200</span><button class="order-btn" onclick="orderItem('Jiggle पिज़्ज़ा', '150-200')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">मार्गरीटा पिज़्ज़ा</h3><span class="offer-price">8" ₹120 | 10" ₹150</span><button class="order-btn" onclick="orderItem('मार्गरीटा पिज़्ज़ा', '120-150')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">सुप्रीम लवर्स पिज़्ज़ा</h3><span class="offer-price">8" ₹160 | 10" ₹210</span><button class="order-btn" onclick="orderItem('सुप्रीम लवर्स पिज़्ज़ा', '160-210')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">पंजाबी पिज़्ज़ा</h3><span class="offer-price">8" ₹180 | 10" ₹240</span><button class="order-btn" onclick="orderItem('पंजाबी पिज़्ज़ा', '180-240')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">तंदूरी पनीर पिज़्ज़ा</h3><span class="offer-price">8" ₹130 | 10" ₹170</span><button class="order-btn" onclick="orderItem('तंदूरी पनीर पिज़्ज़ा', '130-170')">🛒 ऑर्डर करें</button></div></div>
+            <div class="card"><div class="card-icon">🍕</div><div class="card-content"><h3 class="item-name">ट्रिपल चीज पिज़्ज़ा</h3><span class="offer-price">8" ₹140 | 10" ₹200</span><button class="order-btn" onclick="orderItem('ट्रिपल चीज पिज़्ज़ा', '140-200')">🛒 ऑर्डर करें</button></div></div>
         </div>
     </section>
 
