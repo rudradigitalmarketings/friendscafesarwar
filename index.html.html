@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends Cafe Sarwar | Digital Menu</title>
+    <style>
+        /* CSS Variables & Reset */
+        :root {
+            --primary-color: #e50914;
+            --secondary-color: #ffb800;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* Motion Graphic Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        /* Navbar */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-color);
+            backdrop-filter: blur(10px);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo img {
+            width: 50px;
+            border-radius: 50%;
+        }
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: var(--secondary-color); }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('friendscafeimage.jpeg') center/cover;
+            animation: fadeIn 1s ease-out;
+        }
+        .hero h2 {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px #000;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .hero-btn {
+            padding: 12px 30px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+        }
+        .hero-btn:hover {
+            transform: scale(1.1);
+            background: #ff0a16;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 50px 0 30px;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            border-bottom: 2px dashed var(--primary-color);
+            display: inline-block;
+            padding-bottom: 10px;
+            left: 50%;
+            position: relative;
+            transform: translateX(-50%);
+        }
+
+        /* Menu Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Item Cards (UI/UX) */
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: all 0.4s ease;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(255, 184, 0, 0.2);
+            border: 1px solid var(--secondary-color);
+        }
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+        .item-name {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+        .price-section {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+        .offer-price {
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+        
+        /* Discount Badge */
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Order Button */
+        .order-btn {
+            background: #25D366; /* WhatsApp Green */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .order-btn:hover {
+            background: #1ebc5a;
+            transform: scale(1.05);
+        }
+
+        /* Footer & Social */
+        footer {
+            background: #000;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 50px;
+            border-top: 3px solid var(--secondary-color);
+        }
+        .footer-info {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .insta-btn {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+        .map-btn {
+            background: #4285F4;
+            color: white;
+        }
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav { display: none; } /* Simplified for mobile, can add hamburger menu later */
+            .hero h2 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="friendscafelogo.jpeg" alt="Friends Cafe Logo" onerror="this.src='https://via.placeholder.com/50'">
+            <h1>Friends Cafe</h1>
+        </div>
+        <nav>
+            <a href="#combos">स्पेशल कॉम्बो</a>
+            <a href="#new-items">नए आइटम</a>
+            <a href="#menu">मेनू</a>
+            <a href="#contact">संपर्क करें</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Good Food, Good Mood</h2>
+        <p>स्वाद भी, शुद्ध भी - सरवाड़ का अपना कैफे!</p>
+        <a href="#menu" class="hero-btn">मेनू देखें</a>
+    </section>
+
+    <section id="combos" class="container">
+        <h2 class="section-title">✨ स्पेशल कॉम्बो पैक ✨</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="badge">ऑफर!</div>
+                <img src="special combo 1.png" alt="Combo 1" class="card-img" onerror="this.src='https://via.placeholder.com/300x200'">
+                <div class="card-content">
+                    <h3 class="item-name">कॉम्बो पैक 1</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 10px; font-size:0.9rem;">पनीर टिक्का + कोल्ड कॉफी + चाइनीज़ भेल</p>
+                    <div class="price-section">
+                        <span class="original-price">₹210</span>
+                        <span class="offer-price">₹190</span>
+                    </div>
+                    <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 1', 190)">
+                        🛒 ऑर्डर करें (WhatsApp)
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="badge">बचत!</div>
+                <img src="special combo 2.png" alt="Combo 2" class="card-img" onerror="this.src='https://via.placeholder.com/300x200'">
+                <div class="card-content">
+                    <h3 class="item-name">कॉम्बो पैक 2</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 10px; font-size:0.9rem;">पिंक सॉस पास्ता + बॉम्बे भेल + फ्रेंच फ्राई</p>
+                    <div class="price-section">
+                        <span class="original-price">₹230</span>
+                        <span class="offer-price">₹199</span>
+                    </div>
+                    <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 2', 199)">
+                        🛒 ऑर्डर करें (WhatsApp)
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="badge">बेस्ट डील!</div>
+                <img src="special combo 3.png" alt="Combo 3" class="card-img" onerror="this.src='https://via.placeholder.com/300x200'">
+                <div class="card-content">
+                    <h3 class="item-name">कॉम्बो पैक 3</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 10px; font-size:0.9rem;">पंजाबी पिज़्ज़ा 8" + कोल्ड कॉफी + मसाला सैंडविच</p>
+                    <div class="price-section">
+                        <span class="original-price">₹330</span>
+                        <span class="offer-price">₹299</span>
+                    </div>
+                    <button class="order-btn" onclick="orderItem('स्पेशल कॉम्बो पैक 3', 299)">
+                        🛒 ऑर्डर करें (WhatsApp)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="new-items" class="container">
+        <h2 class="section-title">🔥 नए आइटम (Try Now!) 🔥</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="new item list.jpg" alt="मटर पनीर" class="card-img" style="object-position: top;" onerror="this.src='https://via.placeholder.com/300x200'">
+                <div class="card-content">
+                    <h3 class="item-name">मटर पनीर / कड़ाई पनीर</h3>
+                    <div class="price-section"><span class="offer-price">Best Price</span></div>
+                    <button class="order-btn" onclick="orderItem('मटर/कड़ाई पनीर', 'Best Price')">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="new item list.jpg" alt="छोले कुल्चे" class="card-img" style="object-position: center;" onerror="this.src='https://via.placeholder.com/300x200'">
+                <div class="card-content">
+                    <h3 class="item-name">छोले कुल्चे</h3>
+                    <div class="price-section"><span class="offer-price">₹60</span></div>
+                    <button class="order-btn" onclick="orderItem('छोले कुल्चे', 60)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="new item list.jpg" alt="चाइनीज भेल" class="card-img" style="object-position: bottom;" onerror="this.src='https://via.placeholder.com/300x200'">
+                <div class="card-content">
+                    <h3 class="item-name">चाइनीज भेल</h3>
+                    <div class="price-section"><span class="offer-price">₹40</span></div>
+                    <button class="order-btn" onclick="orderItem('चाइनीज भेल', 40)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="container">
+        <h2 class="section-title">🍔 डिजिटल मेनू कार्ड 🍕</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="item-name">मोमोज (स्टीम / फ्राई)</h3>
+                    <div class="price-section"><span class="offer-price">₹50 / ₹60</span></div>
+                    <button class="order-btn" onclick="orderItem('मोमोज', '50/60')">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="item-name">स्प्रिंग रोल</h3>
+                    <div class="price-section"><span class="offer-price">₹50</span></div>
+                    <button class="order-btn" onclick="orderItem('स्प्रिंग रोल', 50)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="item-name">पनीर टिक्का</h3>
+                    <div class="price-section"><span class="offer-price">₹99</span></div>
+                    <button class="order-btn" onclick="orderItem('पनीर टिक्का', 99)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="item-name">पंजाबी पिज़्ज़ा (8")</h3>
+                    <div class="price-section"><span class="offer-price">₹180</span></div>
+                    <button class="order-btn" onclick="orderItem('पंजाबी पिज़्ज़ा 8 इंच', 180)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="item-name">पिंक सॉस पास्ता</h3>
+                    <div class="price-section"><span class="offer-price">₹100</span></div>
+                    <button class="order-btn" onclick="orderItem('पिंक सॉस पास्ता', 100)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="item-name">वड़ा पाव</h3>
+                    <div class="price-section"><span class="offer-price">₹40</span></div>
+                    <button class="order-btn" onclick="orderItem('वड़ा पाव', 40)">🛒 ऑर्डर करें</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-info">
+            <h2 style="color: var(--secondary-color); margin-bottom: 10px;">Friends Cafe Sarwar</h2>
+            <p>📍 <strong>लोकेशन:</strong> हाई सेकेंडरी स्कूल रोड, सरवाड़</p>
+            <p>📞 <strong>संपर्क:</strong> +91 95888 34575</p>
+            <p style="margin-top: 10px; color: var(--text-muted);">अच्छा खाना, अच्छी बाते और यादगार पल!</p>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.instagram.com/friendscafesarwar/" target="_blank" class="insta-btn">
+                📸 Instagram पर फॉलो करें
+            </a>
+            <a href="https://www.google.com/maps/place/FRIENDS+CAFE+SARWAR/@26.0651827,75.010642,17z/data=!4m10!1m2!2m1!1sfriends+cafe+sarwar!3m6!1s0x396eb4581c32ca49:0xe0d45771af9bb443!8m2!3d26.0651827!4d75.0154056!15sChNmcmllbmRzIGNhZmUgc2Fyd2FyWhUiE2ZyaWVuZHMgY2FmZSBzYXJ3YXKSARFiYXNxdWVfcmVzdGF1cmFudOABAA!16s%2Fg%2F11lcmrd9yj?entry=ttu&g_ep=EgoyMDI2MDYxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="map-btn">
+                🗺️ Google Maps लोकेशन
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        function orderItem(itemName, price) {
+            // WhatsApp Number
+            const phoneNumber = "919588834575";
+            
+            // Format the message
+            const message = `नमस्ते फ्रेंड्स कैफे! 🍔 \n\nमैं यह ऑर्डर करना चाहता/चाहती हूँ:\n\n👉 *आइटम:* ${itemName}\n💰 *कीमत:* ₹${price}\n\nकृपया मुझे बताएं कि मेरा ऑर्डर कब तक तैयार हो जाएगा?`;
+            
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Redirect to WhatsApp
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+
+</body>
+</html>
