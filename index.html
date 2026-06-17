@@ -88,7 +88,7 @@
         }
         .order-btn:hover { background: linear-gradient(45deg, #128C7E, #25D366); transform: scale(1.02); }
 
-        /* Original Menu Images Styling (Moved to Bottom) */
+        /* Original Menu Images Styling */
         .menu-image-box { text-align: center; margin-bottom: 40px; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 15px; border: 1px solid #333; }
         .menu-image-box img { max-width: 100%; border-radius: 12px; border: 2px solid var(--secondary-color); box-shadow: 0 5px 15px rgba(0,0,0,0.8); margin-bottom: 15px; }
         
@@ -239,10 +239,11 @@
     <section id="menu-cards" class="container">
         <h2 class="section-title">📜 हमारा पूरा मेनू 📜</h2>
         
-        <!-- New Item List Image using strictly 'menu1.jpg' -->
+        <!-- New Item List Image using Auto-Fallback logic -->
         <div class="menu-image-box">
             <h3 style="color:var(--secondary-color); margin-bottom: 10px;">नया आइटम मेनू</h3>
-            <img src="menu1.jpg" alt="New Items List" loading="lazy" onerror="this.src='https://placehold.co/800x600/111/ffb800?text=Menu+Image+Not+Found'">
+            <!-- SMART AUTO-FIX: Tries new item list.jpg first, if fails tries newmenucard.jpeg, then menu1.jpg -->
+            <img src="new%20item%20list.jpg" alt="New Items List" loading="lazy" onerror="this.onerror=null; this.src='newmenucard.jpeg'; if(this.src==='newmenucard.jpeg') this.src='menu1.jpg';">
             <br>
             <!-- WhatsApp Order Now Button -->
             <button class="wa-order-btn" onclick="orderMenu('नए आइटम की लिस्ट से')">
@@ -251,10 +252,11 @@
             </button>
         </div>
 
-        <!-- Main Menu Card Image using strictly 'menu2.jpg' -->
+        <!-- Main Menu Card Image using strict 'menu2.jpg' -->
         <div class="menu-image-box">
             <h3 style="color:var(--secondary-color); margin-bottom: 10px;">हमारा डिजिटल मेनू</h3>
-            <img src="menu2.jpg" alt="Main Menu Card" loading="lazy" onerror="this.src='https://placehold.co/800x600/111/ffb800?text=Menu+Image+Not+Found'">
+            <!-- SMART AUTO-FIX: Tries menu2.jpg first, then new menu card.jpeg -->
+            <img src="menu2.jpg" alt="Main Menu Card" loading="lazy" onerror="this.onerror=null; this.src='new%20menu%20card.jpeg';">
             <br>
             <!-- WhatsApp Order Now Button -->
             <button class="wa-order-btn" onclick="orderMenu('मेनू कार्ड से')">
